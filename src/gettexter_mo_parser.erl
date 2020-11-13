@@ -32,6 +32,7 @@
 -module(gettexter_mo_parser).
 -export([parse/1, parse_file/1, to_dict/1]).
 -export_type([catalog/0, key/0, value/0]).
+-include_lib("kernel/include/logger.hrl").
 
 -type key() :: {Singular :: binary(),
                 Plural :: binary() | undefined,
@@ -52,6 +53,7 @@
 
 -spec parse_file(file:filename()) -> #st{}.
 parse_file(Name) ->
+    ?LOG_INFO("Parsing MO file: ~p", [Name]).
     {ok, Bin} = file:read_file(Name),
     parse(Bin).
 
