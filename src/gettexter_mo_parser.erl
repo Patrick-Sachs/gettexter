@@ -53,8 +53,9 @@
 
 -spec parse_file(file:filename()) -> #st{}.
 parse_file(Name) ->
-    ?LOG_INFO("Parsing MO file: ~p", [Name]).
+    ?LOG_INFO("Parsing MO file: ~p", [Name]),
     {ok, Bin} = file:read_file(Name),
+    ?LOG_INFO("... file was found."),
     parse(Bin).
 
 -spec parse(binary()) -> #st{}.
